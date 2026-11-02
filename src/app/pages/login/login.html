@@ -1,0 +1,39 @@
+<main class="login-page">
+
+    <section class="login-card">
+        <header class="login-card__header">
+            <span class="login-card__icon" aria-hidden="true">
+            🎮
+            </span>
+            <h1>Connexion</h1>
+            <p>Rejoignez la communauté GamerChallenge<br />où chaque défi compte !</p>
+        </header>
+
+        <form class="login-form" [formGroup]="form" (ngSubmit)="login()">
+
+            <div class="login-form__field">
+                <label for="email">Email</label>
+                <input formControlName="email" type="email" id="email" name="email" placeholder="exemple@email.com" autoComplete="email" required />
+            </div>
+
+            <div class="login-form__field">
+                <label for="password">Mot de passe</label>
+                <input formControlName="password" type="password" id="password" name="password" placeholder="Votre mot de passe" autoComplete="current-password" required />
+            </div>
+
+            <button class="login-form__submit" type="submit">Se connecter</button>
+        </form>
+
+        <div class="login-card__register">
+            <div class="login-card__separator">
+                <span>ou</span>
+            </div>
+            <p>Vous n’avez pas de compte ?</p>
+
+            <a [routerLink]="['/register']">S’enregistrer</a>
+        </div>
+        <pre>{{ form.value | json }}</pre>
+    </section>
+</main>
+
+

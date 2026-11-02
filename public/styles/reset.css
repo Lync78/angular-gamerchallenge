@@ -1,0 +1,52 @@
+/* =========================================================
+   CHARTE GRAPHIQUE GLOBALE
+   ========================================================= */
+
+:root {
+  --color-primary: #f97316;
+  --color-accent: #f59e0b;
+  --color-peach: #fed7aa;
+
+  --color-background: #fff7ed;
+  --color-surface: #fffbf7;
+
+  --color-text: #18181b;
+  --color-text-secondary: #6b7280;
+
+  --color-border: #e7e5e4;
+}
+
+
+/* =========================================================
+   STYLE GÉNÉRAL
+   ========================================================= */
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  margin: 0;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+  background-image: url("../assets/images/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+/* =========================================================
+   CONTENEUR PRINCIPAL DE L’APPLICATION
+   ========================================================= */
+
+.app {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+}

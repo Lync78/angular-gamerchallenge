@@ -1,0 +1,45 @@
+<header class="site-header">
+    <div class="site-header__container">
+        <a class="site-header__logo" [routerLink]="['/']" (click)="closeMenu()">
+            <img src="/assets/images/logo.png" alt="Logo GamerChallenge" />
+
+            <span class="site-header__name">Gamer<span>Challenge</span></span>
+        </a>
+
+        <button class="site-header__menu-button" type="button" [attr.aria-label]=" isMenuOpen() ? 'Fermer le menu' : 'Ouvrir le menu'"
+            [attr.aria-expanded]="isMenuOpen()"
+            aria-controls="main-navigation"
+            (click)="toggleMenu()"
+        >
+        </button>
+
+        <div id="main-navigation" [class]="isMenuOpen() ? 'site-header__menu site-header__menu--open' : 'site-header__menu'">
+            <nav class="site-header__nav" aria-label="Navigation principale">
+            <a [routerLink]="['/']" (click)="closeMenu()">
+                <fa-icon [icon]="faHouse" aria-hidden="true"></fa-icon>
+                <span>Accueil</span>
+            </a>
+
+            <a routerLink="/challenges" (click)="closeMenu()">
+                <fa-icon [icon]="faTrophy" aria-hidden="true"></fa-icon>
+                <span>Challenges</span>
+            </a>
+
+            <a routerLink="/leaderboard" (click)="closeMenu()">
+                <fa-icon [icon]="faRankingStar" aria-hidden="true"></fa-icon>
+                <span>Classement</span>
+            </a>
+            </nav>
+
+            <div class="site-header__actions">
+            @if(auth.user(); as user){
+                <a class="site-header__profile" [routerLink]="['/profile']" (click)="closeMenu()">Mon Profil</a>
+                <button class="site-header__logout" type="button" (click)="logout()">Déconnexion</button>
+            } @else {
+                <a class="site-header__login" [routerLink]="['/login']" (click)="closeMenu()">Connexion</a>
+                <a class="site-header__register" [routerLink]="['/register']" (onClick)="closeMenu()">Inscription</a>
+            }
+            </div>
+        </div>
+    </div>
+</header>

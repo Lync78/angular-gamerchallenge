@@ -1,0 +1,226 @@
+/* =========================
+   PAGE DE CONNEXION
+   MOBILE FIRST
+   ========================= */
+
+.login-page {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: 2rem 1rem 3rem;
+}
+
+/* =========================
+   CARTE DE CONNEXION
+   ========================= */
+
+.login-card {
+  width: min(100%, 620px);
+  padding: 1.5rem;
+
+  background-color: rgb(255 251 247 / 96%);
+
+  border: 1px solid #e7e5e4;
+  border-radius: 20px;
+
+  box-shadow:
+    0 12px 30px rgb(24 24 27 / 14%),
+    0 3px 8px rgb(24 24 27 / 8%);
+}
+
+/* =========================
+   PRÉSENTATION
+   ========================= */
+
+.login-card__header {
+  text-align: center;
+}
+
+.login-card__icon {
+  display: grid;
+  place-items: center;
+
+  width: 58px;
+  height: 58px;
+  margin-inline: auto;
+
+  font-size: 1.7rem;
+
+  background-color: #fed7aa;
+  border-radius: 50%;
+}
+
+.login-card__header h1 {
+  margin: 1rem 0 0;
+
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  line-height: 1.1;
+  color: #18181b;
+}
+
+.login-card__header p {
+  margin: 0.75rem 0 0;
+
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* =========================
+   FORMULAIRE
+   ========================= */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  margin-top: 2rem;
+}
+
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form__field label {
+  margin-bottom: 0.4rem;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.login-form__field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 0.9rem;
+
+  font-size: 1rem;
+  color: #18181b;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d6d3d1;
+  border-radius: 10px;
+
+  outline: none;
+}
+
+/*
+ * Le contour orange indique clairement
+ * quel champ est actuellement sélectionné.
+ */
+.login-form__field input:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgb(249 115 22 / 18%);
+}
+
+.login-form__field input::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================
+   BOUTON DE CONNEXION
+   ========================= */
+
+.login-form__submit {
+  min-height: 48px;
+  margin-top: 0.25rem;
+  padding: 0.75rem 1.25rem;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+
+  background-color: #f97316;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+/* =========================
+   LIEN VERS L’INSCRIPTION
+   ========================= */
+
+.login-card__register {
+  margin-top: 1.5rem;
+
+  text-align: center;
+}
+
+/* Ligne contenant le mot "ou" */
+.login-card__separator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  color: #9ca3af;
+}
+
+/* Lignes placées de chaque côté du mot "ou" */
+.login-card__separator::before,
+.login-card__separator::after {
+  content: "";
+
+  flex: 1;
+  height: 1px;
+
+  background-color: #e7e5e4;
+}
+
+.login-card__separator span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.login-card__register p {
+  margin: 1.25rem 0 0.75rem;
+
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Bouton secondaire menant vers l’inscription */
+.login-card__register a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0.65rem 1.25rem;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #f97316;
+  text-decoration: none;
+
+  background-color: #fffbf7;
+
+  border: 2px solid #f97316;
+  border-radius: 10px;
+}
+
+/* =========================
+   TABLETTE ET ORDINATEUR
+   ========================= */
+
+@media (min-width: 700px) {
+  .login-page {
+    padding-block: 3rem 4rem;
+  }
+
+  .login-card {
+    padding: 2.5rem 3rem;
+  }
+
+  .login-form__submit {
+    align-self: center;
+    min-width: 190px;
+  }
+}
