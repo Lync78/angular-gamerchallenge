@@ -16,17 +16,17 @@
         <div id="main-navigation" [class]="isMenuOpen() ? 'site-header__menu site-header__menu--open' : 'site-header__menu'">
             <nav class="site-header__nav" aria-label="Navigation principale">
             <a [routerLink]="['/']" (click)="closeMenu()">
-                <fa-icon [icon]="faHouse" aria-hidden="true"></fa-icon>
+                <fa-icon [icon]="icons.faHouse" aria-hidden="true"></fa-icon>
                 <span>Accueil</span>
             </a>
 
             <a routerLink="/challenges" (click)="closeMenu()">
-                <fa-icon [icon]="faTrophy" aria-hidden="true"></fa-icon>
+                <fa-icon [icon]="icons.faTrophy" aria-hidden="true"></fa-icon>
                 <span>Challenges</span>
             </a>
 
             <a routerLink="/leaderboard" (click)="closeMenu()">
-                <fa-icon [icon]="faRankingStar" aria-hidden="true"></fa-icon>
+                <fa-icon [icon]="icons.faRankingStar" aria-hidden="true"></fa-icon>
                 <span>Classement</span>
             </a>
             </nav>

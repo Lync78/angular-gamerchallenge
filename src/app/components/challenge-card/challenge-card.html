@@ -1,0 +1,34 @@
+<article class="challenge-card">
+
+    <div class="challenge-card__media">
+        @if( challenge().image ){
+            <img [src]="challenge().image" [alt]="`Illustration du challenge ${challenge().title}`">
+        }
+    </div>
+    <div class="challenge-card__content">
+        <h3>{{ challenge().title }}</h3>
+
+        <div class="challenge-card__tags">
+            <span><fa-icon [icon]="icons.faGamepad" aria-hidden="true"></fa-icon>{{ challenge().jeu.title }}</span>
+        </div>
+
+        <p class="challenge-card__description">{{ challenge().description }}</p>
+
+        <div class="challenge-card__author">
+            <span><fa-icon [icon]="icons.faUser" aria-hidden="true"></fa-icon>{{ challenge().user.username }}</span>
+
+            <span>{{ challenge().createdAt | date:'dd/MM/yyyy à HH:mm' }}</span>
+        </div>
+
+        <div class="challenge-card__bottom">
+            <div class="challenge-card__stats">
+            <span title="Nombre de likes">
+            <fa-icon [icon]="icons.faHeart" aria-hidden="true"></fa-icon>
+                {{ challenge().countVoter }}
+            </span>
+            </div>
+
+            <a [routerLink]="[`/challenges/${challenge().slug}`]">Voir les détails<fa-icon [icon]="icons.faArrowRight" aria-hidden="true"></fa-icon></a>
+        </div>
+    </div>
+</article>

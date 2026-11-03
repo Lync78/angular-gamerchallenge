@@ -2,7 +2,7 @@ import { Component, signal, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from "../../core/services/auth.service";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTrophy, faHouse, faRankingStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesome } from '../../core/services/font-awesome';
 
 @Component({
   imports: [FontAwesomeModule, RouterLink],
@@ -14,9 +14,7 @@ export class Header {
 
   constructor(private router: Router){}
 
-  readonly faTrophy = faTrophy;
-  readonly faHouse = faHouse;
-  readonly faRankingStar = faRankingStar;
+  readonly icons = inject(FontAwesome);
 
   readonly error = signal<string>("");
 

@@ -1,0 +1,254 @@
+/* =========================
+   CARTE DE CHALLENGE
+   ========================= */
+
+/*
+ * Conteneur principal de la carte.
+ *
+ * Toutes les cartes utilisent désormais exactement
+ * la même apparence, sur toutes les pages.
+ */
+.challenge-card {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  overflow: hidden;
+
+  background-color: #fffbf7;
+
+  border: 1px solid #e7e5e4;
+  border-radius: 16px;
+
+  box-shadow: 0 6px 18px rgb(24 24 27 / 10%);
+}
+
+/* =========================
+   IMAGE OU COULEUR PROVISOIRE
+   ========================= */
+
+/*
+ * Cette zone accueillera plus tard l’image du challenge.
+ *
+ * Pour le moment, toutes les cartes utilisent la même
+ * couleur de fond.
+ */
+.challenge-card__media {
+  position: relative;
+
+  width: 100%;
+  min-height: 210px;
+  overflow: hidden;
+
+  /* Couleur affichée si l’image ne charge pas */
+  background-color: #b7791f;
+
+  /* Image commune à toutes les cartes */
+  background-image: url("../../../../public/assets/images/Card_Background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/*
+ * L’image prend toute la place disponible dans la zone.
+ *
+ * object-fit: cover évite de déformer l’image :
+ * elle est recadrée si ses proportions sont différentes.
+ */
+.challenge-card__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* =========================
+   CONTENU DE LA CARTE
+   ========================= */
+
+/*
+ * La propriété flex: 1 permet au contenu de prendre
+ * tout l’espace restant dans la carte.
+ */
+.challenge-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  padding: 1rem;
+}
+
+/* Titre du challenge */
+.challenge-card__content h3 {
+  margin: 0;
+
+  font-size: 1.15rem;
+  line-height: 1.25;
+  color: #18181b;
+}
+
+/* =========================
+   NOM DU JEU
+   ========================= */
+
+/*
+ * Cette zone ne contient plus la catégorie.
+ * Elle affiche uniquement le nom du jeu.
+ */
+.challenge-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  margin-top: 0.75rem;
+}
+
+/* Pastille contenant l’icône et le nom du jeu */
+.challenge-card__tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  padding: 0.3rem 0.55rem;
+
+  font-size: 0.75rem;
+  color: #18181b;
+
+  background-color: #e7e5e4;
+  border-radius: 999px;
+}
+
+/* =========================
+   DESCRIPTION
+   ========================= */
+
+/*
+ * flex: 1 aide à aligner le bas des différentes cartes,
+ * même lorsque leurs descriptions n’ont pas la même longueur.
+ */
+.challenge-card__description {
+  flex: 1;
+
+  margin: 1rem 0;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* =========================
+   AUTEUR ET DATE
+   ========================= */
+
+.challenge-card__author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding-bottom: 0.75rem;
+
+  font-size: 0.75rem;
+  color: #6b7280;
+
+  border-bottom: 1px solid #e7e5e4;
+}
+
+/* Aligne l’icône avec le nom de l’auteur */
+.challenge-card__author span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/*
+ * Empêche la date de revenir à la ligne
+ * lorsqu’elle est suffisamment courte.
+ */
+.challenge-card__author span:last-child {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* =========================
+   LIKES ET BOUTON
+   ========================= */
+
+.challenge-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding-top: 0.75rem;
+}
+
+/* Conteneur du nombre de likes */
+.challenge-card__stats {
+  display: flex;
+  align-items: center;
+}
+
+/* Icône cœur et nombre de likes */
+.challenge-card__stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Bouton menant vers la page détaillée */
+.challenge-card__bottom > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  min-height: 38px;
+  padding: 0.55rem 0.75rem;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+
+  background-color: #f97316;
+  border-radius: 9px;
+}
+
+/* =========================
+   PETITS TÉLÉPHONES
+   ========================= */
+
+@media (max-width: 360px) {
+  /*
+   * Sur les très petits écrans, l’auteur et la date
+   * passent sur deux lignes pour éviter les débordements.
+   */
+  .challenge-card__author {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  /*
+   * Les likes et le bouton passent également
+   * l’un sous l’autre.
+   */
+  .challenge-card__bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  /* Le bouton occupe toute la largeur disponible. */
+  .challenge-card__bottom > a {
+    width: 100%;
+  }
+}

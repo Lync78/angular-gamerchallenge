@@ -1,0 +1,104 @@
+<main class="home-page">
+    <section class="hero-section">
+        <div class="hero-content">
+            <p class="hero-eyebrow">JOUE · CRÉE · PARTAGE · DÉFIE</p>
+
+            <h1 class="hero-title">Rejoins la communauté
+                <span>GamerChallenge !</span>
+            </h1>
+
+            <p class="hero-description">Des défis gaming, des créateurs passionnés et des récompenses à la clé. Prêt à relever le défi ?</p>
+            <div class="hero-actions">
+            <a class="hero-button hero-button-primary" [routerLink]="['/challenges']">Voir les challenges
+                <span aria-hidden="true">→</span>
+            </a>
+
+            <a class="hero-button hero-button-secondary" [routerLink]="['/challenges/new']">
+                <span class="button-icon" aria-hidden="true">+</span>Proposer un challenge
+            </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-section">
+    <div class="section-heading">
+        <h2>🏆 Challenges à la une</h2>
+
+        <a [routerLink]="['/challenges']">Voir tous les challenges →</a>
+    </div>
+    <div class="challenge-grid">
+        @if(isLoading()){
+            <p>Chargement des challenges...</p>
+        } @else if(!isLoading() && error()){
+            <p>{{ error() }}</p>
+        } @else if(!isLoading() && !error() && featureChallenges().length === 0){
+            <p>Aucun challenge disponible pour le moment.</p>
+        } @else if(!isLoading() && !error() && featureChallenges().length !== 0){
+            @for(challenge of featureChallenges(); track challenge.id){
+                <app-challenge-card [challenge]="challenge" />
+            }
+        }
+        <!----- 
+        featuredChallenges.map((challenge) => (
+            <ChallengeCard
+            key={challenge.id}
+            id={challenge.id}
+            title={challenge.title}
+            slug={challenge.slug}
+            game={challenge.jeu.title}
+            description={challenge.description}
+            author={challenge.user.username}
+            createdAt={new Date(
+                challenge.createdAt,
+            ).toLocaleDateString("fr-FR")}
+            likes={challenge.voter?.length ?? 0}
+            image={
+                getYoutubeThumbnailUrl(challenge.url_video) ??
+                undefined
+            }
+            />
+        ))}
+        ------>
+    </div>
+    </section>
+
+    <section class="how-it-works-section">
+        <h2 class="how-it-works-title"><span aria-hidden="true">🎮</span>Comment ça marche ?</h2>
+
+        <div class="steps-container">
+            <article class="step-card">
+            <span class="step-number">1</span>
+
+            <div class="step-icon" aria-hidden="true">🔍</div>
+
+            <div class="step-content">
+                <h3>Découvre des défis</h3>
+
+                <p>Parcours les challenges proposés par la communauté.</p>
+            </div>
+            </article>
+
+            <article class="step-card">
+            <span class="step-number">2</span>
+
+            <div class="step-icon" aria-hidden="true">▶️</div>
+
+            <div class="step-content">
+                <h3>Participe</h3>
+                <p>Réalise le défi et partage ta vidéo.</p>
+            </div>
+            </article>
+
+            <article class="step-card">
+            <span class="step-number">3</span>
+
+            <div class="step-icon" aria-hidden="true">🏆</div>
+
+            <div class="step-content">
+                <h3>Gagne en visibilité</h3>
+                <p>Reçois des votes et monte dans le classement !</p>
+            </div>
+            </article>
+        </div>
+    </section>
+</main>

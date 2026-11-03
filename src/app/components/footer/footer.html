@@ -1,0 +1,82 @@
+<footer class="site-footer">
+    <div class="site-footer__container">
+    <div class="site-footer__content">
+        <div class="site-footer__brand">
+        <a class="site-footer__logo" [routerLink]="['/']">
+            <img src="/assets/images/logo.png" alt="Logo GamerChallenge" />
+
+            <span class="site-footer__name">Gamer<span>Challenge</span>
+            </span>
+        </a>
+            <p>La communauté des joueurs qui se lancent des défis !</p>
+        </div>
+        <nav class="site-footer__links" aria-label="Liens utiles">
+            <h2>Liens utiles</h2>
+            <ul>
+                <li>
+                    <a [routerLink]="['/notice']">Mentions légales</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="site-footer__socials">
+        <h2>Suivez-nous</h2>
+
+            <div class="site-footer__social-list">
+            <a href="https://discord.com/servers/gaming?query=-fr" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord">
+                <fa-icon [icon]="icons.faDiscord" aria-hidden="true"></fa-icon>
+            </a>
+
+            <a
+                href="https://www.twitch.tv/search?term=speedun"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitch"
+                title="Twitch"
+            >
+                <fa-icon [icon]="icons.faTwitch" aria-hidden="true"></fa-icon>
+            </a>
+
+            <a
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                title="YouTube"
+            >
+                <fa-icon [icon]="icons.faYoutube" aria-hidden="true"></fa-icon>
+            </a>
+
+            <a
+                href="https://x.com/?lang=fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X / Twitter"
+                title="X / Twitter"
+            >
+                <fa-icon [icon]="icons.faXTwitter" aria-hidden="true"></fa-icon>
+            </a>
+
+            <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                title="Instagram"
+            >
+                <fa-icon [icon]="icons.faInstagram" aria-hidden="true"></fa-icon>
+            </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-footer__bottom">
+        <p>© {{yearCurrent()}} GamerChallenge. Tous droits réservés.</p>
+
+        <p class="site-footer__slogan">
+            Play · Share · Challenge · Together
+        <span aria-hidden="true"> ♛</span>
+        </p>
+    </div>
+    </div>
+</footer>

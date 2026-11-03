@@ -5,14 +5,13 @@ import { JsonPipe } from "@angular/common";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 
 @Component({
-  imports: [RouterLink, ReactiveFormsModule , JsonPipe],
+  imports: [RouterLink, ReactiveFormsModule],
   selector: 'app-login',
   styleUrl: './login.css',
   templateUrl: './login.html',
 })
 export class Login {
-  private email: string = "";
-  private password: string = "";
+
   private error: string = "";
 
   readonly form = new FormGroup({
@@ -32,7 +31,6 @@ export class Login {
           this.router.navigate(['/dashboard']);
         },
         error: () => {
-          console.log(email, password );
           this.error = "Identifiants incorrects";
         }
       });
