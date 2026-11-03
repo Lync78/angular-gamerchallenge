@@ -15,6 +15,6 @@ export class ChallengeCard {
   readonly icons = inject(FontAwesome);
   readonly challenge = input.required<Challenge>();
   constructor(){
-    effect(() => {console.log(this.challenge())});
+    //effect(() => {console.log(this.challenge())});
   }
 }

@@ -38,27 +38,6 @@
                 <app-challenge-card [challenge]="challenge" />
             }
         }
-        <!----- 
-        featuredChallenges.map((challenge) => (
-            <ChallengeCard
-            key={challenge.id}
-            id={challenge.id}
-            title={challenge.title}
-            slug={challenge.slug}
-            game={challenge.jeu.title}
-            description={challenge.description}
-            author={challenge.user.username}
-            createdAt={new Date(
-                challenge.createdAt,
-            ).toLocaleDateString("fr-FR")}
-            likes={challenge.voter?.length ?? 0}
-            image={
-                getYoutubeThumbnailUrl(challenge.url_video) ??
-                undefined
-            }
-            />
-        ))}
-        ------>
     </div>
     </section>
 

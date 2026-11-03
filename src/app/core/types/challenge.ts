@@ -14,7 +14,6 @@ export interface Challenge {
     jeu: Jeu,
     participations: Participation[],
     user: User,
-    category: string,
     countVoter: number,
     userLike: boolean,
     hasParticipation: boolean,

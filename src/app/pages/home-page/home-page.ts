@@ -31,11 +31,9 @@ export class HomePage {
         this.challenges.set(data);
       },
       error: (err) => {
-        this.isLoading.set(false);
+        this.isLoading.set(true);
         this.error.set('Impossible de récupérer les challenges');
       }
     })
   }
-
-  
 }

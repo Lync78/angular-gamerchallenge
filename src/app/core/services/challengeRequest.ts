@@ -1,13 +1,19 @@
-import { Service, Injectable, signal } from '@angular/core';
+import { Service, Injectable, signal, inject } from '@angular/core';
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 import {Observable, tap, catchError, throwError, map } from "rxjs";
 import { Challenge } from "../types/challenge";
+import { Participation } from "../types/participation";
 import { BaseService } from "./baseService";
+import { Voter } from "../types/voter";
+import { Participation_Voter } from "../types/participation_voter";
+import { Auth } from "./auth.service";
 
 @Injectable({providedIn: 'root'})
 export class ChallengeRequest extends BaseService {
 
   private challengeSignal = signal<Challenge[]| null>(null);
+  
+  private auth = inject(Auth);
 
   constructor(http: HttpClient){
     super(http);
@@ -47,7 +53,8 @@ export class ChallengeRequest extends BaseService {
 
   challenges(): Observable<Challenge[]>{
     return this.http.get<Challenge[]>(`${this.apiUrl}/challenges`).pipe(
-      map(data => data.map(challenge => ({
+      tap(data => {
+        data.map(challenge => ({
         id: challenge.id,
         title: challenge.title,
         slug: challenge.slug,
@@ -64,21 +71,31 @@ export class ChallengeRequest extends BaseService {
         })),
         countVoter: challenge.voter.length,
         user: { id: challenge.user.id, username: challenge.user.username, avatar: challenge.user.avatar },
-        category: "",
         participations: [],
         image: this.getYoutubeThumbnailUrl(challenge.url_video),
         userLike: false,
         hasParticipation: false,
-      }))),
+        }))
+      }),
       catchError(error => {
-        if(error.status == 0){
-          console.error("Impossible de contacter le domaine");
-        }
-        else {
-          console.error(error);
-        }
+        console.error(error);
         return throwError(() => error);
       })
     );
+  }
+
+  challengesBySlug(slug: string): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/challenges/${slug}`).pipe(
+      map(data => JSON.parse(data)),
+      catchError(error => {
+        if(error.status == 0){
+          console.error(this.error);
+        } else {
+          console.error(error);
+        }
+
+        return throwError(() => error);
+      })
+    )
   }
 }

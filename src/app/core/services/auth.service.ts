@@ -2,7 +2,7 @@ import { Service, Injectable, signal } from '@angular/core';
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 import {Observable, tap, catchError, throwError, map } from "rxjs";
 import { BaseService } from "./baseService";
-import { Auth as User } from "../types/auth"; 
+import { Auth as User } from "../types/auth";
 
 @Injectable({providedIn: 'root'})
 export class Auth extends BaseService {
