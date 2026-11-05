@@ -1,1 +1,183 @@
-<p>challenge-page works!</p>
+@if(challenge(); as currentChallenge){
+    <main class="challenge-detail-page">
+
+    <section class="challenge-detail-page__hero">
+        
+        <div class="challenge-detail-page__media">
+            @if(currentChallenge.url_video){
+                <!----- 
+                <iframe class="" [src]="currentChallenge.url_video + '?mute=1'" title="YouTube video player" frameBorder="0" allow="autoplay; encrypted-media" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                ---->
+            } @else {
+                <span class="challenge-detail-page__category">
+                    <fa-icon [icon]="icons.faClock" aria-hidden="true"></fa-icon>
+                </span>
+
+                <button class="challenge-detail-page__play" type="button" aria-label="Lire la vidéo de présentation">
+                    <fa-icon [icon]="icons.faPlay" aria-hidden="true"></fa-icon>
+                </button>
+            }
+        </div>
+
+        <div class="challenge-detail-page__information">
+        <p class="challenge-detail-page__status">
+            <span aria-hidden="true">●</span>
+            {{ currentChallenge.status ? 'En cours' : 'Terminé' }}
+        </p>
+
+        <h1>{{ currentChallenge.title }}</h1>
+
+        <p class="challenge-detail-page__author">
+            <span class="challenge-detail-page__avatar" aria-hidden="true">
+                <fa-icon [icon]="icons.faHeart" aria-hidden="true"></fa-icon>
+            </span>
+
+            Par <strong>{{ currentChallenge.user.username }}</strong>
+        </p>
+
+
+        <div class="challenge-detail-page__stats">
+            <div>
+
+                <fa-icon [icon]="icons.faHeart" aria-hidden="true" (click)="voterHandleLike()"></fa-icon>
+
+                <p>
+                    <strong>{{ currentChallenge.countVoter }}</strong>
+                    <span>votes</span>
+                </p>
+            </div>
+
+            <div>
+                <fa-icon [icon]="icons.faUsers" aria-hidden="true"></fa-icon>
+                <p>
+                    <strong>{{ currentChallenge.participations.length }}</strong>
+                    <span>participations</span>
+                </p>
+            </div>
+
+            <div>
+                <fa-icon [icon]="icons.faCalendarDays" aria-hidden="true"></fa-icon>
+
+                <p>
+                    <span>Du {{ currentChallenge.createdAt | date:'dd/MM/yyyy' }}</span>
+                    <span>au {{ currentChallenge.closeAt | date:'dd/MM/yyyy' }}</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="challenge-detail-page__actions">
+            @if(user()){
+                <a [routerLink]="[`/challenges/${currentChallenge.slug}/edit`]" class="challenge-detail-page__edit-button"><fa-icon [icon]="icons.faPen" aria-hidden="true"></fa-icon>Modifier le challenge </a>
+            }
+
+            @if(user() && !currentChallenge.hasParticipation){
+                <a class="challenge-detail-page__participate-button" href="#participer">
+                    <fa-icon [icon]="icons.faGamepad" aria-hidden="true"></fa-icon> Participer à ce challenge
+                </a>
+            }
+        </div>
+            @if(!user()){
+                <p>Connectez-vous pour participer au challenge</p>
+            }
+        </div>
+    </section>
+
+    <section class="challenge-detail-section">
+        <h2><fa-icon [icon]="icons.faGamepad" aria-hidden="true"></fa-icon>Description</h2>
+
+        <div class="challenge-detail-section__text">
+        {{ currentChallenge.description }}
+
+        </div>
+    </section>
+
+    <section class="challenge-detail-section">
+        <h2>
+            <fa-icon [icon]="icons.faListUl" aria-hidden="true"></fa-icon>
+            Règles
+        </h2>
+
+        <ol class="challenge-detail-page__rules">
+        @for(rule of currentChallenge.rules; track $index){
+            <li>
+                <span>{{ $index+1 }}</span>
+                <p>{{ rule }}</p>
+            </li>
+        }
+        </ol>
+    </section>
+    @if( user() && !currentChallenge.hasParticipation ){
+        <section class="challenge-detail-section" id="participer">
+            <h2>
+                <fa-icon [icon]="icons.faArrowUpFromBracket" aria-hidden="true"></fa-icon>Participer à ce challenge
+            </h2>
+
+            <p class="challenge-detail-section__introduction">Partagez le lien de votre vidéo (YouTube, Twitch, etc.) etmontrez-nous votre performance !</p>
+
+            <form class="challenge-detail-page__form" [formGroup]="form" (ngSubmit)="handleSubmit($event)">
+                <div class="challenge-detail-page__field">
+                    <fa-icon [icon]="icons.faLink" aria-hidden="true"></fa-icon>
+
+                    <label class="visually-hidden" for="urlVideo">Lien de votre vidéo</label>
+
+                    <input id="videoUrl" formControlName="urlVideo" type="url" placeholder="https://youtube.com/embed/VIDEO_ID" required />
+                </div>
+                <button type="submit">
+                    <fa-icon [icon]="icons.faArrowUpFromBracket" aria-hidden="true"></fa-icon>
+                    Valider la participation
+                </button>
+            </form>
+            <div>
+                @if(urlVideo){
+
+                }
+            </div>
+        </section>
+    }
+
+    <section class="challenge-detail-section">
+        <h2>
+            <fa-icon [icon]="icons.faUsers" aria-hidden="true"></fa-icon>
+            Les participations
+        </h2>
+
+        <div class="challenge-detail-page__participations">
+        @for( participation of currentChallenge.participations; track participation.id){
+            <article class="participation-card">
+                <div class="participation-card__thumbnail">
+                    <!-----
+                    <iframe class="" [src]="participation.urlVideo + '?mute=1'" title="YouTube video player" frameBorder="0" allow="autoplay; encrypted-media" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    ---->
+                </div>
+                <div class="participation-card__information">
+                    <p>
+                    <fa-icon [icon]="icons.faUser" aria-hidden="true"></fa-icon>
+                    Par {{ participation.user.username }}
+                    </p>
+                </div>
+                <time>{{ participation.createdAt | date:'dd/MM/yyyy' }}</time>
+                <button [class]="participation.hasVote ? 'participation-card__like-button participation-card__like-button--active' : 'participation-card__like-button'" type="button"
+                /*
+                aria-pressed indique si le bouton est actuellement
+                activé ou non.
+                */
+                [aria-pressed]="participation.hasVote" (click)="handleLike(participation)"
+                >
+                    <fa-icon [icon]="icons.faHeart" aria-hidden="true"></fa-icon>
+
+                    <span>{{ participation.countParticipationVoter }}</span>
+
+                    <span class="participation-card__like-label">
+                    {{ participation.hasVote ? "J'aime" : ""}}
+                    </span>
+
+                    <span class="visually-hidden">
+                        {{ participation.hasVote ? `Retirer mon like à la participation de ${participation.user.username}` : `Retirer mon like à la participation de ${participation.user.username}` }}
+                    </span>
+                </button>
+            </article>
+        }
+        </div>
+    </section>
+    </main>
+}

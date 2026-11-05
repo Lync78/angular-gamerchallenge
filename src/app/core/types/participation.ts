@@ -7,7 +7,7 @@ export interface Participation {
     urlVideo: string,
     createdAt: Date,
     hasVote: boolean,
-    hasParticipation: boolean,
+    countParticipationVoter: number,
     participationVoter: Participation_Voter[],
-    user: User[],
+    user: User,
 }

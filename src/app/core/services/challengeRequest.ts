@@ -84,18 +84,22 @@ export class ChallengeRequest extends BaseService {
     );
   }
 
-  challengesBySlug(slug: string): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/challenges/${slug}`).pipe(
-      map(data => JSON.parse(data)),
-      catchError(error => {
-        if(error.status == 0){
-          console.error(this.error);
-        } else {
-          console.error(error);
-        }
+  async challengesBySlug(slug: string){
+    try {
+      const response = await fetch(`${this.apiUrl}/challenges/${slug}`,{
+        "method": "GET",
+      });
 
-        return throwError(() => error);
-      })
-    )
+      if(response.ok){
+        return await response.json();
+      }
+      else {
+        return "Impossible de trouver les données";
+      }
+      
+    } catch(error){
+      console.error(error);
+      return throwError(() => error);
+    }
   }
 }

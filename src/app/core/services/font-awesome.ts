@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faTrophy, faHouse, faRankingStar, faArrowRight, faGamepad, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faTrophy, faHouse, faRankingStar, faArrowRight, faGamepad, faHeart, faUser, faClock, faPlay, faUsers, faCalendarDays, faPen, faListUl, faArrowUpFromBracket, faLink  } from '@fortawesome/free-solid-svg-icons';
 import { faDiscord, faTwitch, faYoutube, faXTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 @Injectable({
@@ -20,4 +20,15 @@ export class FontAwesome {
     readonly faGamepad = faGamepad;
     readonly faHeart = faHeart;
     readonly faUser = faUser;
+
+    readonly faClock = faClock;
+    readonly faPlay = faPlay;
+    readonly faUsers = faUsers;
+    readonly faCalendarDays = faCalendarDays;
+    readonly faPen = faPen;
+    readonly faListUl = faListUl;
+    readonly faArrowUpFromBracket = faArrowUpFromBracket;
+
+    readonly faLink = faLink;
+
 }
